@@ -39,11 +39,15 @@ def draw_player(x, y):
 
 def draw_enemy(x, y):
     pygame.draw.rect(screen, RED, (x, y, enemy_size, enemy_size))
-
+def score(score):
+    font = pygame.font.SysFont(None, 35)
+    text = font.render("Score: " + str(score), True, WHITE)
+    screen.blit(text, (10, 10))
 def main():
     running = True
     enemies = []
     global player_x
+    score_value = 0
     while running:
         screen.fill((0, 0, 0))
 
@@ -74,7 +78,8 @@ def main():
                 running = False
 
         draw_player(player_x, player_y)
-
+        score(score_value)
+        score_value += 1
         pygame.display.update()
         clock.tick(60)
 
